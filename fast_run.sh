@@ -1,10 +1,13 @@
 #!/bin/bash
 
 
-if command -v nvm >/dev/null 2>&1; then
-    echo "1. nvm is installed."
+nvm_version=$(nvm --version 2>/dev/null)
+
+# Check if the command was successful
+if [ $? -eq 0 ]; then
+    echo "NVM is installed. Version: $nvm_version"
 else
-    echo "1. nvm is not installed."
+    echo "NVM is not installed or not found in the PATH."
 fi
 
 NODE_VERSION=$(node -v)
