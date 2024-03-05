@@ -16,6 +16,8 @@ else
     nvm use 16
 fi
 
+sleep 3
+
 if command -v npx >/dev/null 2>&1; then
     echo "3. npx is already installed."
 else
@@ -51,7 +53,7 @@ else
 fi
 
 echo "7. killing existing tmux if exists."
-tmux kill-session
+tmux kill-session -t $SESSION_NAME
 
 echo "8. creating tmux."
 SESSION_NAME="ai_blockachain_poc_session"
