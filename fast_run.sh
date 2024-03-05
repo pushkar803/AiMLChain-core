@@ -52,13 +52,14 @@ else
     echo "6. $package_name is already installed"
 fi
 
+SESSION_NAME="ai_blockachain_poc_session"
+WINDOW_NAME="ai_blockachain_poc_window"
+CODE_DIR=~/ipfs/AiMLChain-core
+
 echo "7. killing existing tmux if exists."
 tmux kill-session -t $SESSION_NAME
 
 echo "8. creating tmux."
-SESSION_NAME="ai_blockachain_poc_session"
-WINDOW_NAME="ai_blockachain_poc_window"
-CODE_DIR=~/ipfs/AiMLChain-core
 tmux new-session -d -s $SESSION_NAME -n $WINDOW_NAME -x- -y-  -e "CODE_DIR=$CODE_DIR"
 
 tmux split-window -v
