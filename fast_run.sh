@@ -91,7 +91,7 @@ tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.6 'cd $CODE_DIR && nvm use 16' 
 
 echo "9. creating blockchain using ganache."
 sleep 1
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.0 'ganache-cli -m hawk couple problem quantum lemon lava saddle swallow want become forum educate -l 10000000' C-m
+tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.0 'ganache-cli -m hawk couple problem quantum lemon lava saddle swallow want become forum educate -l 10000000 --host 0.0.0.0' C-m
 
 echo "10. contract building and migrating through truffle."
 sleep 3
