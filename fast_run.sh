@@ -1,6 +1,5 @@
 #!/bin/bash
 
-nvm use 16
 nvm_version=$(nvm --version 2>/dev/null)
 
 # Check if the command was successful

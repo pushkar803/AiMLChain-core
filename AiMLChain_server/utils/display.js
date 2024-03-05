@@ -12,4 +12,16 @@ function displayTable({ id, challenge, difficulty }) {
   console.log(defaultTable.toString());
 }
 
-module.exports = displayTable;
+const defaultTable2 = new Table({
+  style: { head: ["cyanBright"] },
+  head: ["Request Id", "Prediction", "Operation Hash"],
+  colWidths: [12, 12, 60],
+});
+
+function displayTablePredResult({ id, prediction, ophash }) {
+  defaultTable2.pop();
+  defaultTable2.push([id, prediction, ophash]);
+  console.log(defaultTable2.toString());
+}
+
+module.exports = {displayTable, displayTablePredResult};

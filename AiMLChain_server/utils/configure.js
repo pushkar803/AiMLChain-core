@@ -6,7 +6,7 @@ async function init() {
   const web3 = new Web3("ws://16.16.96.218:8545");
 
   const networkId = await web3.eth.net.getId();
-  console.log(networkId)
+  //console.log(networkId)
   const aiMLChainInstance = new web3.eth.Contract(
     AiMLChainProxy.abi,
     AiMLChainProxy.networks[networkId].address

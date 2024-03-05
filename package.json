@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall":"cp ./nano-ipfs-store.js node_modules/nano-ipfs-store/nano-ipfs-store.js"
+    "postinstall": "cp ./nano-ipfs-store.js node_modules/nano-ipfs-store/nano-ipfs-store.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "chalk": "^4.1.0",
     "cli-spinners": "^2.5.0",
     "cli-table": "^0.3.4",
+    "crypto-js": "^4.2.0",
     "level": "^6.0.1",
     "log-update": "^4.0.0",
     "nano-ipfs-store": "^0.1.3",

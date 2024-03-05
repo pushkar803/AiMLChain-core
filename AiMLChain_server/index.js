@@ -1,9 +1,10 @@
 const Miner = require("./utils/miner");
 //const level = require("level");
-const DisplayTable = require("./utils/display");
+const {displayTable, displayTablePredResult} = require("./utils/display");
 const configure = require("./utils/configure");
 const BN = require("bn.js");
 const modelRunner = require("./utils/model-runner");
+const CryptoJS = require("crypto-js");
 
 //Get reference to database store. To prevent mutex locks this is commented.
 //const db = level("./AiMLChain_server/model_store");
@@ -75,7 +76,7 @@ async function submitMiningSolution({
       gas: 10000000,
     });
 
-    console.log("Successfully submitted mining solution for request id: ", id);
+    console.log("Successfully submitted solution for request id: ", id);
   } catch (err) {
     console.log(
       err,
@@ -91,8 +92,8 @@ async function startMining({ web3, aiMLChain, aiMLChainAbi }) {
 
   isMining = true;
 
-  console.log("*-------------Started Mining-------------*");
-  DisplayTable({ id, challenge, difficulty });
+  // console.log("*-------------Started Mining-------------*");
+  // displayTable({ id, challenge, difficulty });
 
   const prediction = await modelRunner.getPrediction(modelId, dataPoint);
 
@@ -102,8 +103,12 @@ async function startMining({ web3, aiMLChain, aiMLChainAbi }) {
     new BN(difficulty, 10)
   );
 
-  console.log("Found POW solution: ", nonce);
-  console.log("Prediction for given request: ",  id, prediction, nonce);
+  // console.log("Found POW solution: ", nonce);
+  const ophash = CryptoJS.MD5(nonce).toString();
+
+  // console.log("Prediction for given request: ",  id, prediction, nonce);
+  console.log(`*-------------Prediction for Request Id: ${id}-------------*`);
+  displayTablePredResult({ id, prediction, ophash });
 
   await submitMiningSolution({ web3, aiMLChain, aiMLChainAbi, id, prediction, nonce });
 }
