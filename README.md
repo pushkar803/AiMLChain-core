@@ -36,32 +36,32 @@ Install truffle globally if not exist
   
 Set node code dir
 	
-	NODE_CODE=~/ipfs/AiMLChain-core
+    NODE_CODE=~/ipfs
 
 Clone node code
 
     cd $NODE_CODE
-  	git clone https://github.com/pushkar803/AiMLChain-core.git
+    git clone https://github.com/pushkar803/AiMLChain-core.git && cd ./AiMLChain-core
     npm i
 
 Get copiled contracts and chain data
 	
-	scp -r -i $SSH_KEY ubuntu@16.16.96.218:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/build
+    scp -r -i $SSH_KEY ubuntu@16.16.96.218:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/AiMLChain-core/build
 
 Create local node for that chain
   
-    cd $NODE_CODE && node ./AiMLChain_server 5
+    cd $NODE_CODE/AiMLChain-core && node ./AiMLChain_server 5
 
 Create new terminal and connect to truffle console
 
-	npx truffle console
+    npx truffle console
 
 Instanciate contract
 	
-	const instance = await UsingAiMLChain.deployed()
+    const instance = await UsingAiMLChain.deployed()
 
 Invoke contract method
 
-	await instance.requestPrediction(1, "QmSmY8yhnfiwdedCjguHi28MesHh2CCeCBXrvhzBpaneVA", 0)
+    await instance.requestPrediction(1, "QmSmY8yhnfiwdedCjguHi28MesHh2CCeCBXrvhzBpaneVA", 0)
 
 
