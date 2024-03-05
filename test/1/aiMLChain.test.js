@@ -4,15 +4,15 @@ const BN = require("bn.js");
 const AiMLChainAbi = require("../../build/contracts/AiMLChain.json").abi;
 
 contract("AiMLChain", async (accounts) => {
-  let usingAiMLChain, ethML;
+  let usingAiMLChain, aiMLChain;
 
   const [alice, bob, john, mike, dave, chris] = accounts;
 
   it("is deployed properly", async () => {
-    ethML = await AiMLChainMain.deployed();
+    aiMLChain = await AiMLChainMain.deployed();
     usingAiMLChain = await UsingAiMLChain.deployed();
 
-    assert(ethML.address !== "");
+    assert(aiMLChain.address !== "");
     assert(usingAiMLChain.address !== "");
   });
 
@@ -27,23 +27,23 @@ contract("AiMLChain", async (accounts) => {
 
     //Miners (5) submits data
     const data = web3.eth.abi.encodeFunctionCall(AiMLChainAbi[2], [1, 356]);
-    await ethML.sendTransaction({
+    await aiMLChain.sendTransaction({
       from: bob,
       data,
     });
-    await ethML.sendTransaction({
+    await aiMLChain.sendTransaction({
       from: john,
       data,
     });
-    await ethML.sendTransaction({
+    await aiMLChain.sendTransaction({
       from: mike,
       data,
     });
-    await ethML.sendTransaction({
+    await aiMLChain.sendTransaction({
       from: chris,
       data,
     });
-    const result = await ethML.sendTransaction({
+    const result = await aiMLChain.sendTransaction({
       from: dave,
       data,
     });
