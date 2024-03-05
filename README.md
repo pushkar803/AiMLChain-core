@@ -52,7 +52,8 @@ Create new terminal and connect to truffle console
     npx truffle console
 
 Instanciate contract
-const instance = await UsingAiMLChain.deployed()
+
+    const instance = await UsingAiMLChain.deployed()
 
 Invoke contract method
 
