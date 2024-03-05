@@ -29,4 +29,7 @@ const assert = require("assert");
   });;
   
 
+  shash = await ipfs.add("foobar111")
+  console.log(shash)
+
 })();
