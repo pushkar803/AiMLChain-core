@@ -20,7 +20,13 @@ const defaultTable2 = new Table({
 
 function displayTablePredResult({ id, prediction, ophash }) {
   defaultTable2.pop();
-  defaultTable2.push([id, prediction, ophash]);
+  predictionStr = ""
+  if(prediction == 1){
+    predictionStr = "Dog"
+  }else{
+    predictionStr = "Cat"
+  }
+  defaultTable2.push([id, predictionStr, ophash]);
   console.log(defaultTable2.toString());
 }
 

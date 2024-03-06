@@ -1,10 +1,10 @@
 #!/bin/bash
 
-nvm_version=$(nvm --version 2>/dev/null)
+nvm_version=$(whereis nvm)
 
 # Check if the command was successful
-if [ $? -eq 0 ]; then
-    echo "1. NVM is installed. Version: $nvm_version"
+if [[ $nvm_version =~ "/" ]]; then
+    echo "1. NVM is installed."
 else
     echo "1. NVM is not installed or not found in the PATH."
 fi
@@ -15,9 +15,12 @@ if [ "$MAJOR_VERSION" -eq 16 ]; then
     echo "2. Node.js version is 16."
 else
     echo "2. Node.js version is not 16. It is version $MAJOR_VERSION. so switching to node 16 using nvm"
-    nvm use 16
+    
+    nvm_version=$(nvm use 16)
+
 fi
 
+NODE_VERSION=$(node -v)
 sleep 5
 
 if command -v npx >/dev/null 2>&1; then

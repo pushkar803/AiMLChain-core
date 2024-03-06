@@ -1,25 +1,44 @@
 const { PythonShell } = require("python-shell");
-const ipfs = require("nano-ipfs-store").at("http://localhost:5001");
+var ipfsAPI = require('ipfs-api')
+var ipfs = ipfsAPI('localhost', '5001', {protocol: 'http'}) // leaving out the arguments will default to these values
+const fs = require('node:fs');
+const path = require('path');
+const crypto = require('crypto');
 
 //For local testing
 const data = {
   1: "weather.py",
+  2: "cat_or_dog.py",
 };
 
 async function getPrediction(modelId, dataPoint) {
-  //const dataPointArgs = JSON.parse(await ipfs.cat(dataPoint));
-  tempResp = await ipfs.cat(dataPoint)
-  dataPointArgs = tempResp.split(",")
+  tempResp = await ipfs.get(dataPoint)
+  filedata = tempResp[0].content
 
-  // console.log("#####################################################################")
-  // console.log(modelId, dataPointArgs)
+  const currentDate = new Date();
+  const timestamp = currentDate.getTime();
+  const randomString = crypto.createHash('md5').update(String(timestamp)).digest('hex');
+  const filename = `${randomString}.jpg`;
+
+  const outputPath = path.join(__dirname+"/../models/", filename);
+  
+  fs.writeFile(outputPath, filedata, err => {
+    if (err) {
+      console.error(err);
+    } 
+  });
+  
   const prediction = await new Promise((resolve, reject) => {
     PythonShell.run(
       `./AiMLChain_server/models/${data[modelId]}`,
-      { args: dataPointArgs },
+      { args: outputPath },
       function (err, result) {
         if (err) reject(err);
-        resolve(result[0]);
+        fs.rmSync(outputPath, {
+            force: true,
+        });
+      
+        resolve(result[1]);
       }
     );
   });
@@ -27,4 +46,16 @@ async function getPrediction(modelId, dataPoint) {
   return prediction;
 }
 
+async function downloadFile(cid, outputPath) {
+  const content = [];
+  for await (const chunk of ipfs.cat(cid)) {
+    content.push(chunk);
+  }
+  fs.writeFileSync(outputPath, Buffer.concat(content));
+}
+
 module.exports = { getPrediction };
+
+// getPrediction(2,"QmVYNoE5dt8SDNu1YZMhFcdhmTgBAYdfzcysRkGQe9bCHH").then((resp)=>{
+//   console.log(resp)
+// })
