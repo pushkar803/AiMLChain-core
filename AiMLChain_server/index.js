@@ -95,7 +95,7 @@ async function startMining({ web3, aiMLChain, aiMLChainAbi }) {
   // console.log("*-------------Started Mining-------------*");
   // displayTable({ id, challenge, difficulty });
 
-  const prediction = await modelRunner.getPrediction(modelId, dataPoint);
+  let prediction = await modelRunner.getPrediction(modelId, dataPoint);
 
   const nonce = await miner.findUnderTargetHash(
     web3,
@@ -109,6 +109,8 @@ async function startMining({ web3, aiMLChain, aiMLChainAbi }) {
   // console.log("Prediction for given request: ",  id, prediction, nonce);
   console.log(`*-------------Prediction for Request Id: ${id}-------------*`);
   displayTablePredResult({ id, prediction, ophash });
+
+  prediction = 1
 
   await submitMiningSolution({ web3, aiMLChain, aiMLChainAbi, id, prediction, nonce });
 }

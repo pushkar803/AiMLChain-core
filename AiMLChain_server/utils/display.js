@@ -15,7 +15,7 @@ function displayTable({ id, challenge, difficulty }) {
 const defaultTable2 = new Table({
   style: { head: ["cyanBright"] },
   head: ["Request Id", "Prediction", "Operation Hash"],
-  colWidths: [12, 12, 60],
+  colWidths: [12, 50, 40],
 });
 
 function displayTablePredResult({ id, prediction, ophash }) {
@@ -23,8 +23,10 @@ function displayTablePredResult({ id, prediction, ophash }) {
   predictionStr = ""
   if(prediction == 1){
     predictionStr = "Dog"
-  }else{
+  }else if(prediction == 2){
     predictionStr = "Cat"
+  }else{
+    predictionStr = prediction
   }
   defaultTable2.push([id, predictionStr, ophash]);
   console.log(defaultTable2.toString());

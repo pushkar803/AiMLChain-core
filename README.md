@@ -5,16 +5,16 @@
 ## On Server
 
 Connect server
-    
+
     ssh -i $SSH_KEY ubuntu@ec2-16-16-96-218.eu-north-1.compute.amazonaws.com && cd ~/poc4/AiMLChain-core
 
 Check if chain is running using
-    
+
     tmux ls
 
 It should show running session named `ai_blockachain_poc_session` \
 If not rnning then start chain using
-    
+
     ./fast_run.sh
 
 Wait until chain successfully starts
@@ -39,11 +39,11 @@ Clone node code
     npm i
 
 Set node code dir
-    
+
     NODE_CODE=~/ipfs/AiMLChain-core
 
 Get copiled contracts and chain data
-    
+
     scp -r -i $SSH_KEY ubuntu@16.16.96.218:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/build
 
 Create local node for that chain
@@ -63,6 +63,6 @@ Invoke contract method
     await instance.requestPrediction(1, "QmSmY8yhnfiwdedCjguHi28MesHh2CCeCBXrvhzBpaneVA", 0)
 
 Block explorer link http://16.16.96.218:5051
-give input for block explorer UI as 
-    
+give input for block explorer UI as
+
     http://16.16.96.218:8545
