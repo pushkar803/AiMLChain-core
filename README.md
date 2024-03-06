@@ -40,7 +40,7 @@ Clone node code
     npm i
 
 Get copiled contracts and chain data
-    
+
     scp -r -i $SSH_KEY ubuntu@16.16.96.218:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/AiMLChain-core/build
 
 Create local node for that chain

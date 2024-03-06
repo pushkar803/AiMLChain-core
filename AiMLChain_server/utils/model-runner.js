@@ -1,13 +1,13 @@
 const { PythonShell } = require("python-shell");
 var ipfsAPI = require('ipfs-api')
-var ipfs = ipfsAPI('localhost', '5001', {protocol: 'http'}) // leaving out the arguments will default to these values
+var ipfs = ipfsAPI('16.16.96.218', '5001', {protocol: 'http'}) // leaving out the arguments will default to these values
 const fs = require('node:fs');
 const path = require('path');
 const crypto = require('crypto');
 
 //For local testing
 const data = {
-  1: "weather.py",
+  1: "image_classify.py",
   2: "cat_or_dog.py",
 };
 
@@ -37,8 +37,11 @@ async function getPrediction(modelId, dataPoint) {
         fs.rmSync(outputPath, {
             force: true,
         });
-      
-        resolve(result[1]);
+        
+        if(modelId == 1)
+          resolve(result[0])
+        else if(modelId == 2)
+          resolve(result[1])
       }
     );
   });
