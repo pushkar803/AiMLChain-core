@@ -5,6 +5,12 @@ const configure = require("./utils/configure");
 const BN = require("bn.js");
 const modelRunner = require("./utils/model-runner");
 const CryptoJS = require("crypto-js");
+const fs = require('fs');
+const JSONdb = require('simple-json-db');
+const path = require('path');
+
+opFilePath = path.join(__dirname,'/../file_server/output.json')
+const jsonDb = new JSONdb(opFilePath);
 
 //Get reference to database store. To prevent mutex locks this is commented.
 //const db = level("./AiMLChain_server/model_store");
@@ -95,6 +101,7 @@ async function startMining({ web3, aiMLChain, aiMLChainAbi }) {
   // console.log("*-------------Started Mining-------------*");
   // displayTable({ id, challenge, difficulty });
 
+  jsonDb.set(dataPoint, "");
   let prediction = await modelRunner.getPrediction(modelId, dataPoint);
 
   const nonce = await miner.findUnderTargetHash(
@@ -110,10 +117,16 @@ async function startMining({ web3, aiMLChain, aiMLChainAbi }) {
   console.log(`*-------------Prediction for Request Id: ${id}-------------*`);
   displayTablePredResult({ id, prediction, ophash });
 
-  prediction = 1
+  opData = JSON.stringify({
+    "prediction":prediction,
+    "nonce":nonce
+  })
+  jsonDb.set(dataPoint, opData);
 
-  await submitMiningSolution({ web3, aiMLChain, aiMLChainAbi, id, prediction, nonce });
+  prediction = 1
+  await submitMiningSolution({ web3, aiMLChain, aiMLChainAbi, id, prediction, nonce }); 
 }
+
 
 (async () => {
   const { web3, aiMLChain, aiMLChainAbi } = await configure.init();

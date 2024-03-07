@@ -44,7 +44,7 @@ Set node code dir
 
 Get copiled contracts and chain data
 
-    scp -r -i $SSH_KEY ubuntu@16.16.96.218:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/build
+    scp -r -i $SSH_KEY ubuntu@0.0.0.0:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/build
 
 Create local node for that chain
 
@@ -62,7 +62,7 @@ Invoke contract method
 
     await instance.requestPrediction(1, "QmSmY8yhnfiwdedCjguHi28MesHh2CCeCBXrvhzBpaneVA", 0)
 
-Block explorer link http://16.16.96.218:5051
+Block explorer link http://0.0.0.0:5051
 give input for block explorer UI as
 
-    http://16.16.96.218:8545
+    http://0.0.0.0:8545
