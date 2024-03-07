@@ -14,9 +14,7 @@ const uploadDir = path.join(__dirname,'uploads');
 
 const JSONdb = require('simple-json-db');
 opFilePath = path.join(__dirname,'/output.json')
-console.log(opFilePath)
 jsonDb = new JSONdb(opFilePath);
-
 
 const MyContractABI = require(path.join(__dirname, '../build/contracts/UsingAiMLChain'))
 const Web3 = require('web3');
