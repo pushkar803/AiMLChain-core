@@ -9,6 +9,7 @@ const fs = require('fs');
 const JSONdb = require('simple-json-db');
 const path = require('path');
 
+
 opFilePath = path.join(__dirname,'/../file_server/output.json')
 const jsonDb = new JSONdb(opFilePath);
 
@@ -85,7 +86,6 @@ async function submitMiningSolution({
     console.log("Successfully submitted solution for request id: ", id);
   } catch (err) {
     console.log(
-      err,
       "Transaction failed (no panic): Block is already mined by 5 miners / nonce submitted is invalid / you have already sumbitted the data for this"
     );
   }
@@ -130,9 +130,19 @@ async function startMining({ web3, aiMLChain, aiMLChainAbi }) {
 
 (async () => {
   const { web3, aiMLChain, aiMLChainAbi } = await configure.init();
-  const accounts = await web3.eth.getAccounts();
-  miner = new Miner(accounts[process.argv[2]]);
-  web3.eth.defaultAccount = accounts[process.argv[2]];
-  startEventListener({ web3, aiMLChain, aiMLChainAbi });
-  checkAndMine({ web3, aiMLChain, aiMLChainAbi });
+  try{
+    const accounts = await web3.eth.getAccounts();
+    miner = new Miner(accounts[process.argv[2]]);
+    web3.eth.defaultAccount = accounts[process.argv[2]];
+    startEventListener({ web3, aiMLChain, aiMLChainAbi });
+    checkAndMine({ web3, aiMLChain, aiMLChainAbi });
+  }catch(e){
+    console.log('####################')
+    console.log(e)
+  }
+
 })();
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.log('Unhandled Rejection at:', promise, 'reason:', reason);
+});

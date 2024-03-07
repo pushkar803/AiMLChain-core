@@ -72,9 +72,9 @@ library AiMLChainLib {
 
     uint256 prediction = 0;
     uint256 cmax = 0;
-    for(uint256 i = 0; i < 5; i++) {
+    for(uint256 i = 0; i < 2; i++) {
       uint256 count = 0;
-      for(uint256 j = 0; j < 5; j++) {
+      for(uint256 j = 0; j < 2; j++) {
         if(request.finalValues[i] == request.finalValues[j])
           count++;
       }
@@ -89,8 +89,8 @@ library AiMLChainLib {
     require(result, "Low level call failed!");
 
     //Pay reward to generate new supply
-    for(uint i = 0; i < 5; i++) {
-      AiMLChainTransferLib.transferFromTest(self, address(this), request.miners[i], request.uintStorage[tip] / 5 + self.uintStorage[reward]);
+    for(uint i = 0; i < 2; i++) {
+      AiMLChainTransferLib.transferFromTest(self, address(this), request.miners[i], request.uintStorage[tip] / 2 + self.uintStorage[reward]);
     }
     self.uintStorage[totalSupply] += 250 * 10 ** 18;
 
@@ -200,7 +200,7 @@ library AiMLChainLib {
     request.miners[request.predictionsReceived] = msg.sender;
     request.predictionsReceived++;
 
-    if(request.predictionsReceived == 5) {
+    if(request.predictionsReceived == 2) {
       newBlock(self, _id, _nonce);
     }
   }
@@ -224,7 +224,7 @@ library AiMLChainLib {
     request.finalValues[request.predictionsReceived] = _prediction;
     request.predictionsReceived++;
 
-    if(request.predictionsReceived == 5) {
+    if(request.predictionsReceived == 2) {
       //TODO in main- new block formation
 
       //Call the user contract

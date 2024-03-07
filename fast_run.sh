@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 nvm_version=$(whereis nvm)
 
 # Check if the command was successful
@@ -57,6 +58,14 @@ else
     echo "6. $package_name is already installed"
 fi
 
+package_name='pm2'
+if [[ "$(npm list -g $package_name)" =~ "empty" ]]; then
+    echo "6.1 $package_name not found so Installing $package_name ..."
+    npm install -g $package_name
+else
+    echo "6.1 $package_name is already installed"
+fi
+
 SESSION_NAME="ai_blockachain_poc_session"
 WINDOW_NAME="ai_blockachain_poc_window"
 CODE_DIR=~/ipfs/AiMLChain-core
@@ -78,14 +87,14 @@ tmux split-window -v
 tmux select-pane -t 3
 tmux split-window -h 
 
-tmux select-pane -t 3
-tmux split-window -v
+# tmux select-pane -t 3
+# tmux split-window -v
 
-tmux select-pane -t 5
-tmux split-window -v 
+# tmux select-pane -t 5
+# tmux split-window -v 
 
-tmux select-pane -t 6
-tmux split-window -h
+# tmux select-pane -t 6
+# tmux split-window -h
 
 tmux select-pane -t 3
 
@@ -94,14 +103,14 @@ tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.1 'cd $CODE_DIR && nvm use 16' 
 tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.2 'cd $CODE_DIR && nvm use 16' C-m
 tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.3 'cd $CODE_DIR && nvm use 16' C-m
 tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.4 'cd $CODE_DIR && nvm use 16' C-m
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.5 'cd $CODE_DIR && nvm use 16' C-m
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.6 'cd $CODE_DIR && nvm use 16' C-m
+# tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.5 'cd $CODE_DIR && nvm use 16' C-m
+# tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.6 'cd $CODE_DIR && nvm use 16' C-m
 # tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.7 'cd $CODE_DIR && nvm use 16' C-m
 
 sleep 5
 
 echo "9. creating blockchain using ganache."
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.0 'ganache-cli -m hawk couple problem quantum lemon lava saddle swallow want become forum educate -l 10000000 --host 0.0.0.0' C-m
+tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.0 'ganache-cli -m hawk couple problem quantum lemon lava saddle swallow want become forum educate -l 10000000 --host 13.50.224.87' C-m
 sleep 3
 
 echo "10. contract building and migrating through truffle."
@@ -109,12 +118,16 @@ tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.1 'npx truffle migrate' C-m
 sleep 15
 
 echo "11. starting 5 nodes."
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.2 'node ./AiMLChain_server 0' C-m
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.3 'node ./AiMLChain_server 1' C-m
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.4 'node ./AiMLChain_server 2' C-m
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.5 'node ./AiMLChain_server 3' C-m
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.6 'node ./AiMLChain_server 4' C-m
-# tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.7 'node ./file_server/file_server.js' C-m
+tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.1 'pm2 delete chain_node_0' C-m
+tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.1 'pm2 delete chain_node_1' C-m
+tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.1 'pm2 start ecosystem.config.js' C-m
+
+tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.2 'pm2 logs chain_node_0' C-m
+tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.3 'pm2 logs chain_node_1' C-m
+# tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.4 'node ./AiMLChain_server 2' C-m
+# tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.5 'node ./AiMLChain_server 3' C-m
+# tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.6 'node ./AiMLChain_server 4' C-m
+tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.4 'node ./file_server/file_server.js' C-m
 
 
 echo "######### Succesfully completed. you can connect to tmux session using tmux attach-session -t $SESSION_NAME ##########"

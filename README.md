@@ -64,7 +64,7 @@ Invoke contract method
 
     await instance.requestPrediction(1, "QmSmY8yhnfiwdedCjguHi28MesHh2CCeCBXrvhzBpaneVA", 0)
 
-Block explorer link http://0.0.0.0:5051
+Block explorer link http://13.50.224.87:5051
 give input for block explorer UI as
 
-    http://0.0.0.0:8545
+    http://13.50.224.87:8545

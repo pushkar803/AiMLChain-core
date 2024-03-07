@@ -37,11 +37,14 @@ async function getPrediction(modelId, dataPoint) {
         fs.rmSync(outputPath, {
             force: true,
         });
-        
-        if(modelId == 1)
-          resolve(result[0])
-        else if(modelId == 2)
-          resolve(result[1])
+        if (result && result.length > 0) {
+          if(modelId == 1)
+            resolve(result[0])
+          else if(modelId == 2)
+            resolve(result[1])
+        }else{
+          resolve("Something went wrong, Please try again ...")
+        }
       }
     );
   });
