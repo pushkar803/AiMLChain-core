@@ -8,7 +8,7 @@ const path = require('path');
 const app = express();
 const port = 3002;
 const host = '0.0.0.0'
-const chainHost = '13.50.249.195'
+const chainHost = '13.50.224.87'
 const uploadDir = path.join(__dirname,'uploads');
 
 const JSONdb = require('simple-json-db');

@@ -96,7 +96,7 @@ tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.3 'cd $CODE_DIR && nvm use 16' 
 tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.4 'cd $CODE_DIR && nvm use 16' C-m
 tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.5 'cd $CODE_DIR && nvm use 16' C-m
 tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.6 'cd $CODE_DIR && nvm use 16' C-m
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.7 'cd $CODE_DIR && nvm use 16' C-m
+# tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.7 'cd $CODE_DIR && nvm use 16' C-m
 
 sleep 5
 
@@ -114,7 +114,7 @@ tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.3 'nodemon ./AiMLChain_server 1
 tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.4 'nodemon ./AiMLChain_server 2' C-m
 tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.5 'nodemon ./AiMLChain_server 3' C-m
 tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.6 'nodemon ./AiMLChain_server 4' C-m
-tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.7 'nodemon ./file_server/file_server.js' C-m
+# tmux send-keys -t ${SESSION_NAME}:${WINDOW_NAME}.7 'nodemon ./file_server/file_server.js' C-m
 
 
 echo "######### Succesfully completed. you can connect to tmux session using tmux attach-session -t $SESSION_NAME ##########"

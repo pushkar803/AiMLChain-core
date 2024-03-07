@@ -3,7 +3,7 @@ const AiMLChainProxy = require("../../build/contracts/AiMLChainMain.json");
 const AiMLChain = require("../../build/contracts/AiMLChain.json");
 
 async function init() {
-  const web3 = new Web3("ws://13.50.249.195:8545");
+  const web3 = new Web3("ws://13.50.224.87:8545");
 
   const networkId = await web3.eth.net.getId();
   //console.log(networkId)
