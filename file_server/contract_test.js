@@ -2,7 +2,9 @@ const path = require('path');
 const MyContractABI = require(path.join(__dirname, '../build/contracts/UsingAiMLChain'))
 const Web3 = require('web3');
 const contract = require("truffle-contract");
-const provider = new Web3.providers.HttpProvider("http://172.31.3.145:8545");
+const dotenv = require('dotenv');
+dotenv.config();
+const provider = new Web3.providers.HttpProvider(`http://${process.env.CHAIN_HOST}:8545`);
 const web3 = new Web3(provider)
 
  async function xyz(){

@@ -1,6 +1,8 @@
 const { PythonShell } = require("python-shell");
+const dotenv = require('dotenv');
+dotenv.config();
 var ipfsAPI = require('ipfs-api')
-var ipfs = ipfsAPI('172.31.3.145', '5001', {protocol: 'http'}) // leaving out the arguments will default to these values
+var ipfs = ipfsAPI(`${process.env.CHAIN_HOST}`, '5001', {protocol: 'http'}) // leaving out the arguments will default to these values
 const fs = require('node:fs');
 const path = require('path');
 const crypto = require('crypto');

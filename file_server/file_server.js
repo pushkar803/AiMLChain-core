@@ -2,13 +2,14 @@ const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
 const cors = require('cors'); // Require the CORS package
-
+const dotenv = require('dotenv');
+dotenv.config();
 const path = require('path');
 
 const app = express();
 const port = 3002;
-const host = '172.31.3.145'
-const chainHost = '172.31.3.145'
+const host = '0.0.0.0'
+const chainHost = `${process.env.CHAIN_HOST}`
 const uploadDir = path.join(__dirname,'uploads');
 
 const JSONdb = require('simple-json-db');

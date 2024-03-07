@@ -25,6 +25,7 @@
     "cli-spinners": "^2.5.0",
     "cli-table": "^0.3.4",
     "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
     "ipfs": "^0.66.1",
     "ipfs-api": "^26.1.2",
     "ipfs-core": "^0.18.1",

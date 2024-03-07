@@ -23,6 +23,8 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = {
   /**
@@ -43,7 +45,7 @@ module.exports = {
     // options below to some value.
     //
     development: {
-      host: "172.31.3.145", // Localhost (default: none)
+      host: `${process.env.CHAIN_HOST}`, // Localhost (default: none)
       port: 8545, // Standard Ethereum port (default: none)
       network_id: "*", // Any network (default: none)
     },

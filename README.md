@@ -46,7 +46,7 @@ Get copiled contracts and chain data
 
     SSH_KEY=~/aws/shahid-ec2.pem
     NODE_CODE=~/ipfs/AiMLChain-core
-    scp -r -i $SSH_KEY ubuntu@172.31.3.145:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/build
+    scp -r -i $SSH_KEY ubuntu@13.50.224.87:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/build
 
 Create local node for that chain
 
@@ -64,7 +64,7 @@ Invoke contract method
 
     await instance.requestPrediction(1, "QmSmY8yhnfiwdedCjguHi28MesHh2CCeCBXrvhzBpaneVA", 0)
 
-Block explorer link http://172.31.3.145:5051
+Block explorer link http://13.50.224.87:5051
 give input for block explorer UI as
 
-    http://172.31.3.145:8545
+    http://13.50.224.87:8545
