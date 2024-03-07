@@ -46,7 +46,7 @@ Get copiled contracts and chain data
 
     SSH_KEY=~/aws/shahid-ec2.pem
     NODE_CODE=~/ipfs/AiMLChain-core
-    scp -r -i $SSH_KEY ubuntu@16.16.96.218:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/build
+    scp -r -i $SSH_KEY ubuntu@13.50.249.195:~/poc4/AiMLChain-core/build/contracts $NODE_CODE/build
 
 Create local node for that chain
 

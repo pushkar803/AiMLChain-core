@@ -1,5 +1,5 @@
 {
-    "QmXmTcoRtPH7EgHeSdzKWSqG1YhdKeuPxxi9e3dMwAFB98": "{\"prediction\":\"rubber eraser, rubber, pencil eraser\",\"nonce\":117}",
+    "QmXmTcoRtPH7EgHeSdzKWSqG1YhdKeuPxxi9e3dMwAFB98": "",
     "QmdNoXK7YbBCqd5DNtMSWdv8255UH4ZizCZyJxBK877LNr": "{\"prediction\":\"notebook, notebook computer\",\"nonce\":163}",
     "QmexuVELtpeCJxwBxpYVrj3uPejhd88vgyXXKkqzoMWP2N": "{\"prediction\":\"cassette\",\"nonce\":2135}",
     "QmYXEtQFUbaoGGN2yWvYpYwiTjpjj9wRBf2gF5G63k8eYb": "{\"prediction\":\"boathouse\",\"nonce\":346}",
@@ -18,5 +18,9 @@
     "QmbE653hSUbtkdm3V5vjH1A1vyG2jkdKi3ggGDNY4vCYjS": "{\"prediction\":\"photocopier\",\"nonce\":1860}",
     "Qmbp5rT9LnxcTcpfdt2hnPRkF1g52CBJVHsGUqZ22vNac6": "{\"prediction\":\"photocopier\",\"nonce\":1619}",
     "QmPQSr1FEvhnGUi1Ma9Th7w4E7VWeYvoLN1fgdWtktpLzf": "{\"prediction\":\"cellular telephone, cellular phone, cellphone, cell, mobile phone\",\"nonce\":1090}",
-    "QmNwDwFt4pugt5Tji2nGCemMqrApYy1NCQBRMuK8Wh7YPF": "{\"prediction\":\"tiger cat\",\"nonce\":4566}"
+    "QmNwDwFt4pugt5Tji2nGCemMqrApYy1NCQBRMuK8Wh7YPF": "{\"prediction\":\"tiger cat\",\"nonce\":4566}",
+    "QmUGVAxUfcGFuqtBGjqKaw4YoCRYNzF9SQ8RYwRFAKp52x": "{\"prediction\":\"golden retriever\",\"nonce\":660}",
+    "Qmem9ehf1nFrWN1V4VTdkVs6jfC84HRAKccXeQpknvJQmo": "{\"prediction\":\"swimming trunks, bathing trunks\",\"nonce\":639}",
+    "QmdmtwpYSfS3df8K9PZHZqe4Sq4JbtXBevzEnM4oxtG8Rb": "{\"prediction\":\"cellular telephone, cellular phone, cellphone, cell, mobile phone\",\"nonce\":362}",
+    "QmSBd71CHXyyUD5yWYUZvaoNeKXDWkLUFyuJDjvmwYbxeJ": "{\"prediction\":\"oxygen mask\",\"nonce\":440}"
 }
