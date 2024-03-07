@@ -1,6 +1,6 @@
 const { PythonShell } = require("python-shell");
 var ipfsAPI = require('ipfs-api')
-var ipfs = ipfsAPI('13.50.224.87', '5001', {protocol: 'http'}) // leaving out the arguments will default to these values
+var ipfs = ipfsAPI('172.31.3.145', '5001', {protocol: 'http'}) // leaving out the arguments will default to these values
 const fs = require('node:fs');
 const path = require('path');
 const crypto = require('crypto');
