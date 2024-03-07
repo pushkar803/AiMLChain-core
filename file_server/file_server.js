@@ -8,6 +8,7 @@ const path = require('path');
 const app = express();
 const port = 3002;
 const host = '0.0.0.0'
+const chainHost = '16.16.96.218'
 const uploadDir = path.join(__dirname,'uploads');
 
 const JSONdb = require('simple-json-db');
@@ -19,7 +20,7 @@ jsonDb = new JSONdb(opFilePath);
 const MyContractABI = require(path.join(__dirname, '../build/contracts/UsingAiMLChain'))
 const Web3 = require('web3');
 const contract = require("truffle-contract");
-const provider = new Web3.providers.HttpProvider(`http://${host}:8545`);
+const provider = new Web3.providers.HttpProvider(`http://${chainHost}:8545`);
 const web3 = new Web3(provider)
 
 app.use(cors({
@@ -29,7 +30,7 @@ app.use(cors({
   }));
   
 var ipfsAPI = require('ipfs-api')
-var ipfs = ipfsAPI('16.16.96.218', '5001', {protocol: 'http'}) 
+var ipfs = ipfsAPI(chainHost, '5001', {protocol: 'http'}) 
 
 // Configure storage
 const storage = multer.diskStorage({
